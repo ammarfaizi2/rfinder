@@ -1005,7 +1005,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
 
         // fallback of $this->tmp
         if (!$this->tmp && $this->tmbPathWritable) {
-        	$this->tmp = $this->tmbPath;
+            $this->tmp = $this->tmbPath;
         }
 
         $this->disabled[] = 'archive';

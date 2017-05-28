@@ -20,7 +20,6 @@ if (! class_exists('elFinderVolumeFlysystemGoogleDriveCache', false)) {
 
 class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysystemDriverExt\Driver
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -84,7 +83,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
             if ($options['pass'] === 'reauth') {
                 $options['pass'] = '';
                 $this->session->set('GoogleDriveAuthParams', [])->set('GoogleDriveTokens', []);
-            } else if ($options['pass'] === 'googledrive') {
+            } elseif ($options['pass'] === 'googledrive') {
                 $options['pass'] = '';
             }
 
@@ -109,7 +108,6 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
 
                     $options['access_token'] = $aToken;
                     $this->session->set('GoogleDriveAuthParams', $options);
-
                 } catch (Exception $e) {
                     $aToken = [];
                     $options['access_token'] = [];
@@ -118,7 +116,6 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
                         return array('exit' => true, 'error' => elFinder::ERROR_REAUTH_REQUIRE);
                     }
                 }
-
             }
 
             if ($options['user'] === 'init') {
@@ -167,7 +164,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
                         return array('exit' => 'callback', 'out' => $out);
                     }
                     $folders = [];
-                    foreach($service->files->listFiles([
+                    foreach ($service->files->listFiles([
                         'pageSize' => 1000,
                         'q' => 'trashed = false and mimeType = "application/vnd.google-apps.folder"'
                     ]) as $f) {
@@ -217,7 +214,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
             return array('exit' => true, 'error' => $e->getMessage());
         }
 
-        foreach(['host', 'user', 'pass', 'id', 'offline'] as $key) {
+        foreach (['host', 'user', 'pass', 'id', 'offline'] as $key) {
             unset($options[$key]);
         }
 
@@ -240,7 +237,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
             unlink($cache);
         }
         if ($tmbs = glob($this->tmbPath . DIRECTORY_SEPARATOR . $this->netMountKey . '*')) {
-            foreach($tmbs as $file) {
+            foreach ($tmbs as $file) {
                 unlink($file);
             }
         }
@@ -323,8 +320,8 @@ class elFinderVolumeFlysystemGoogleDriveNetmount extends \Hypweb\elFinderFlysyst
     /**
      * @inheritdoc
      */
-	protected function tmbname($stat) {
-		return $this->netMountKey.substr(substr($stat['hash'], strlen($this->id)), -38).$stat['ts'].'.png';
-	}
-
+    protected function tmbname($stat)
+    {
+        return $this->netMountKey.substr(substr($stat['hash'], strlen($this->id)), -38).$stat['ts'].'.png';
+    }
 }

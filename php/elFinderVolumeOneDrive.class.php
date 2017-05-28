@@ -596,7 +596,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                         .'?cmd=netmount&protocol=onedrive&host=onedrive.com&user=init&pass=return&node='.$options['id'].$cdata;
 
                     try {
-                        $this->session->set('OneDriveTokens',  (object) array('token' => null));
+                        $this->session->set('OneDriveTokens', (object) array('token' => null));
 
                         $offline = '';
                         // Gets a log in URL with sufficient privileges from the OneDrive API
@@ -782,7 +782,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
         // fallback of $this->tmp
         if (!$this->tmp && $this->tmbPathWritable) {
-        	$this->tmp = $this->tmbPath;
+            $this->tmp = $this->tmbPath;
         }
 
         $this->disabled[] = 'archive';
